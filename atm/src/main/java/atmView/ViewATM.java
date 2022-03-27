@@ -1,15 +1,11 @@
 package atmView;
 
 import atmModel.ModelATM;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
 
 /**
- * @author daniele
+ * ViewATM Class.
+ * 
+ * @author Daniele
  */
 public class ViewATM extends javax.swing.JFrame {
     private ModelATM model;
@@ -263,12 +259,6 @@ public class ViewATM extends javax.swing.JFrame {
                 .addGap(138, 138, 138)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(button7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(9, 9, 9)
-                        .addComponent(button8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(9, 9, 9)
-                        .addComponent(button9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(button4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(9, 9, 9)
                         .addComponent(button5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -280,7 +270,14 @@ public class ViewATM extends javax.swing.JFrame {
                         .addComponent(button2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(button3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(button0))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(button7, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                        .addGap(9, 9, 9)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(button0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(button8, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE))
+                        .addGap(9, 9, 9)
+                        .addComponent(button9, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(buttonConfirm, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -455,27 +452,53 @@ public class ViewATM extends javax.swing.JFrame {
         controller.buttonPressed(buttonMoney);
     }//GEN-LAST:event_buttonMoneyActionPerformed
 
-    
+    // --- METHODS ---
+    /**
+     * Initialize the View: define its Model, Controller and reset the starting screen.
+     */
     private void init() {
         model = new ModelATM();
         controller = new ControllerATM(model, this);
         controller.resetView();
     }
     
-    // --- METHODS ---       
+    /**
+     * Updates the text shown on the main screen.
+     * 
+     * @param text String to show
+     */
     public void updateScreen1(String text) {
         screen1.setText(text);
     }
     
+    /**
+     * Updates the text shown on the side screen.
+     * 
+     * @param text String to show
+     */
     public void updateScreen2(String text) {
         screen2.setText(text);
     }
     
+    /**
+     * Updates the text to be displayed and the status 
+     * of the button used to insert the card.
+     * 
+     * @param text String to show
+     * @param isEnabled Boolean to define active or not the button
+     */
     public void updateCardHolder(String text, boolean isEnabled) {
         buttonCard.setText(text);
         buttonCard.setEnabled(isEnabled);
     }
     
+    /**
+     * Updates the text to be displayed and the status 
+     * of the button used to disburse the money.
+     * 
+     * @param text String to show
+     * @param isEnabled Boolean to define active or not the button
+     */
     public void updateMoneyGiver(String text, boolean isEnabled) {
         buttonMoney.setText(text);
         buttonMoney.setEnabled(isEnabled);

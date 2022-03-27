@@ -5,7 +5,9 @@ import javax.swing.JButton;
 import javax.swing.JToggleButton;
 
 /**
- * @author daniele
+ * ControllerATM Class.
+ * 
+ * @author Daniele
  */
 public class ControllerATM {
 
@@ -13,8 +15,8 @@ public class ControllerATM {
     private ViewATM view;
     private StatusATM status;
     private String pin;
-    private int pinCounter;
-    private final int pinTry;
+    private int pinCounter; // pin insertion attempts
+    private final int pinTry; // pin insertion attempts limit
     private String money;
 
     public ControllerATM(ModelATM model, ViewATM view) {
@@ -28,39 +30,71 @@ public class ControllerATM {
     }
 
     // --- GETTERS AND SETTERS ---
+    /**
+     * Returns the current state of the Controller.
+     * 
+     * @return Enum StatusATM of current state
+     */
     public StatusATM getStatus() {
         return this.status;
     }
 
+    /**
+     * Sets the current state of the controller.
+     * 
+     * @param status Enum StatusATM of the state to set
+     */
     public void setStatus(StatusATM status) {
         this.status = status;
     }
 
     // --- METHODS ---
+    /**
+     * Resets the View to the main screen: welcome message,
+     * card insertion possibility and money withdrawal deactivated.    
+    */
     public void resetView() {
         view.updateScreen1(MessageATM.welcome);
         view.updateCardHolder(MessageATM.cardRequest, true);
         view.updateMoneyGiver(MessageATM.empty, false);
     }
     
+    /**
+     * Resets the Controller, making it ready for the first user interaction.  
+    */
     public void resetController() {
         pinReset();
         pinCounterReset();
         setStatus(StatusATM.CARD);
     }
     
+    /**
+     * Resets the entered pin to an empty string.
+     */
     public void pinReset() {
         this.pin = "";
     }
     
+    /**
+     * Resets the number of pin insertion attempts to zero.
+     */
     public void pinCounterReset() {
         this.pinCounter = 0;
     }
     
+    /**
+     * Resets the requested money to an empty string.
+     */
     public void moneyReset() {
         this.money = "";
     }
     
+    /**
+     * Defines which function to call depending on the button pressed 
+     * and the state of the Controller.
+     * 
+     * @param button Object pressed by the user
+    */
     public void buttonPressed(Object button) {
         switch (status) {
             case CARD:
@@ -89,6 +123,11 @@ public class ControllerATM {
         }
     }
 
+    /**
+     * Check for proper card insertion and set up pin entry screen.
+     * 
+     * @param button Object pressed by the user
+    */
     public void cardInsertion(Object button) {
         if (button instanceof JToggleButton) { 
             JToggleButton btn = (JToggleButton) button;
@@ -102,6 +141,11 @@ public class ControllerATM {
             resetView();
     }
     
+    /**
+     * Check for proper card removal and reset View and Controller.
+     * 
+     * @param button Object pressed by the user
+    */
     public void cardRemoval(Object button) {
         if (button instanceof JToggleButton) { 
             JToggleButton btn = (JToggleButton) button;
@@ -112,6 +156,12 @@ public class ControllerATM {
         }
     }
     
+    /**
+     * Management of pin insertion.Once the pin is validated 
+     * it updates the status of the Controller.
+     * 
+     * @param button Object pressed by the user
+    */
     public void pinInsertion(Object button) {
         JButton btn = (JButton) button;
         String btnText = btn.getText();
@@ -167,6 +217,12 @@ public class ControllerATM {
         }
     }
     
+    /**
+     * Management of menu selection.Once the menu option is selected 
+     * it updates the status of the Controller.
+     * 
+     * @param button Object pressed by the user
+    */
     public void menuSelection(Object button) {
         JButton btn = (JButton) button;
         String btnText = btn.getText();
@@ -203,6 +259,13 @@ public class ControllerATM {
         }
     }
     
+    /**
+     * Management of money request.Once the required money is available and 
+     * in the correct format (multiples of 10), it disburses the money and 
+     * updates the status of the Controller.
+     * 
+     * @param button Object pressed by the user
+    */
     public void moneyRequest(Object button) {
         JButton btn = (JButton) button;
         String btnText = btn.getText();
@@ -270,6 +333,11 @@ public class ControllerATM {
         }
     }
     
+    /**
+     * Returns the Controller to the menu state following the pressed object.
+     * 
+     * @param button Object pressed by the user
+    */
     public void backToMenu(Object button) {
         JButton btn = (JButton) button;
         if ("Cancelar".equals(btn.getText())) {
@@ -279,11 +347,20 @@ public class ControllerATM {
         }
     }
     
+    /**
+     * Defines the View in termination operation phase.
+    */
     public void operationEnd() {
         view.updateScreen1(MessageATM.end);
         view.updateCardHolder(MessageATM.cardRetire, true);
     }
     
+    /**
+     * Delete the last char from a string.
+     * 
+     * @param string String to remove the last character
+     * @return String shortened
+    */
     public String deleteOneDigit(String string) {
         if (string.length() == 1)
             return "";

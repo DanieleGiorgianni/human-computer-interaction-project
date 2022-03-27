@@ -1,9 +1,11 @@
 package atmView;
 
 /**
- *
- * @author danie
+ * Class containing all messages displayed by the View.
+ * 
+ * @author Daniele
  */
+
 public class MessageATM {
     public static String empty = "";
     public static String welcome = "Bienvenido.\n"

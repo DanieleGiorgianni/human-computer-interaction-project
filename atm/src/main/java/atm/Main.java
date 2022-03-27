@@ -3,8 +3,9 @@ package atm;
 import atmView.ViewATM;
 
 /**
- *
- * @author daniele
+ * Main Class.
+ * 
+ * @author Daniele
  */
 public class Main {
     /**

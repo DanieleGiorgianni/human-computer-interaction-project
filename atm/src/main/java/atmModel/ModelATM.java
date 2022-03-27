@@ -1,15 +1,15 @@
 package atmModel;
 
-import java.util.Arrays;
-
 /**
- * @author daniele
+ * ModelATM Class.
+ * 
+ * @author Daniele
  */
 public class ModelATM {
     private int money;
-    private String pin;
-    private int pinAttempt; // num of pin insertion
-    private String[] transactions;
+    private final String pin;
+    private final int pinAttempt; // num of pin insertion
+    private final String[] transactions;
     
     public ModelATM() {
         this.money = 500;
@@ -21,40 +21,48 @@ public class ModelATM {
     }
     
     // --- GETTERS AND SETTES ---
+    /**
+     * Returns the available money amount.
+     * 
+     * @return int available money.
+     */
     public int getMoney() {
-        //int money = this.money;
         return this.money;
     }
     
+    /**
+     * Sets the new value of available money.
+     * 
+     * @param money new balance
+     */
     public void setMoney(int money) {
         this.money = money;
     }
     
+    /**
+     * Returns the correct pin.
+     * 
+     * @return String correct pin
+     */
     public String getPin() {
-        //int pin = this.pin;
         return this.pin;
     }
     
-    /*
-    public void setPin(String pin) {
-        this.pin = pin;
-    }*/
-    
+    /**
+     * Returns the maximum number of pin insertion attempts allowed.
+     * 
+     * @return int maximum pin attempts
+     */
     public int getPinAttempt() {
         return this.pinAttempt;
     }
     
-    /*
-    public void setPinAttempt(int pinAttempt) {
-        this.pinAttempt = pinAttempt;
-    }*/
-    
+    /**
+     * Returns an array of strings with all transactions made.
+     * 
+     * @return String[] transactions made
+     */
     public String[] getTransactions() {
-        //String[] transactions = this.transactions;
         return this.transactions;
-    }
-    
-    public void setTransactions(String[] transactions) {
-        this.transactions = Arrays.copyOf(transactions, transactions.length);
     }
 }

@@ -1,8 +1,9 @@
 package atmView;
 
 /**
- *
- * @author daniele
+ * Enum containing all states of the Controller.
+ * 
+ * @author Daniele
  */
 public enum StatusATM {
     CARD,   // card insertion
