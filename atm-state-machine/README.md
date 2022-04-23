@@ -8,4 +8,7 @@ Implemented the following functionalities:
 - Balance consultation
 - Money withdrawal
 - Transaction consultation
+- Money transfer via IBAN
+- IBAN validation
+- Pin change
 - Exit with card removal
